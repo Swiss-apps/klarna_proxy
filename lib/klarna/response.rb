@@ -2,13 +2,16 @@
 
 module Klarna
   class Response
-    attr_reader :code, :body, :http_response, :headers
+    attr_reader :code, :body, :http_response, :headers, :request_endpoint, :request_body, :request_method
 
-    def initialize(http_response)
+    def initialize(http_response, request_endpoint, request_body, request_method)
       @http_response = http_response
       @code = http_response.code.to_i
       @body = parse_body
       @headers = http_response.to_hash
+      @request_endpoint = request_endpoint
+      @request_body = request_body
+      @request_method = request_method
     end
 
     def success?

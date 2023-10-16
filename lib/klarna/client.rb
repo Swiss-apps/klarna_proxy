@@ -44,7 +44,7 @@ module Klarna
       response = http.request(request)
       http.set_debug_output(nil) if configuration.debugger
 
-      Klarna::Response.new(response)
+      Klarna::Response.new(response, uri.to_s, request.body, request.method)
     end
 
     attr_reader :configuration
