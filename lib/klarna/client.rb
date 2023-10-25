@@ -16,6 +16,7 @@ module Klarna
       uri = URI.parse(configuration.endpoint)
       http = Net::HTTP.new(uri.host, uri.port)
       http.use_ssl = true
+      request_url = uri.to_s + service
 
       request = case type
                 when :post
@@ -44,7 +45,7 @@ module Klarna
       response = http.request(request)
       http.set_debug_output(nil) if configuration.debugger
 
-      Klarna::Response.new(response, uri.to_s, JSON.parse(request.body), request.method)
+      Klarna::Response.new(response, request_url, JSON.parse(request.body), request.method)
     end
 
     attr_reader :configuration
