@@ -45,7 +45,8 @@ module Klarna
       response = http.request(request)
       http.set_debug_output(nil) if configuration.debugger
 
-      Klarna::Response.new(response, request_url, JSON.parse(request.body), request.method)
+      parsed_request_body = request.body.present? ? JSON.parse(request.body) : request.body
+      Klarna::Response.new(response, request_url, parsed_request_body, request.method)
     end
 
     attr_reader :configuration
