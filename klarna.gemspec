@@ -5,7 +5,7 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'klarna/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'klarna_proxy'
+  spec.name          = 'swiss-klarna_proxy'
   spec.version       = Klarna::VERSION
   spec.authors       = ['Andrea Vassallo']
   spec.email         = ['andrea.vassallo.94@gmail.com']
